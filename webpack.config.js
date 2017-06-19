@@ -1,6 +1,7 @@
 var path = require("path");
 var webpack = require("webpack");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var nodeModulesPath = path.join(__dirname, 'node_modules');
 var isProduction = process.env.NODE_ENV == "production";
@@ -15,7 +16,7 @@ var config = {
       'redux-thunk',
       'redux-logger',
       'babel-polyfill',
-       path.join(__dirname, 'babel', 'babelhelpers.js')
+      path.join(__dirname, 'babel', 'babelhelpers.js')
     ],
     app: [
       path.join(__dirname, 'App', 'Index.tsx')
@@ -28,8 +29,8 @@ var config = {
   },
 
   output: {
-      path: path.join(__dirname, 'build'),
-      filename: '[name]_[chunkhash].js'
+    path: path.join(__dirname, 'build'),
+    filename: '[name]_[chunkhash].js'
   },
 
   module: {
@@ -71,18 +72,24 @@ var config = {
     }),
     new webpack.DefinePlugin({
       DEBUG: true
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: 'node_modules/monaco-editor/min/vs',
+        to: 'vs',
+      }
+    ])
   ]
 };
 
 if (isProduction) {
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-     compress: {
-        warnings: false
+    compress: {
+      warnings: false
     }
   }));
   config.plugins.push(new webpack.DefinePlugin({
-    'process.env': {NODE_ENV: '"production"'},
+    'process.env': { NODE_ENV: '"production"' },
     DEBUG: false
   }));
 }
