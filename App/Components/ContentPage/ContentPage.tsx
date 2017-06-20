@@ -1,7 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import MonacoEditor from "react-monaco-editor";
 
 import { sayHello } from "./../../ActionCreators/HelloCountActionCreators";
 import { fetchPosts } from "./../../ActionCreators/SubredditsActionCreators";
@@ -15,6 +14,7 @@ import BodyWrapper from "./BodyWrapper/BodyWrapper";
 import SubredditChooser from "./SubredditChooser/SubredditChooser";
 import ConfigLoader from "./ConfigLoader/ConfigLoader";
 import Posts from "./Posts/Posts";
+import CodeEditor from "./CodeEditor/CodeEditor";
 
 // tslint:disable-next-line:no-any
 const styles: any = require("./ContentPage.module.less");
@@ -31,42 +31,15 @@ interface IContentPageProps {
     fetchConfig?: () => void;
 }
 
-// TODO:
-const options = {
-    selectOnLineNumbers: true,
-    roundedSelection: false,
-    readOnly: false,
-    theme: "vs",
-    cursorStyle: "line",
-    automaticLayout: true,
-};
-
 @connect(mapStateToProps, mapDispatchToProps)
 class ContentPage extends BaseComponent<IContentPageProps, {}> {
     doRender(): React.ReactElement<{}> {
         return (<div className={styles.container}>
-            <Header isActive={true} title={"Welcome to test page"} />
-            <BodyWrapper ref="contentBodyRef" title={this.props.bodyTitle} summary={this.props.bodySummary}>
-                <div className={styles.hello}>
-                    <Button onClick={() => this.props.sayHello()}>Say Hello!</Button>
-                    <div className={styles.message}>You said hello {this.props.sayHelloCount} time(s)</div>
-                </div>
-                <br />
-                <div className={styles.subreddits}>
-                    <SubredditChooser fetchSubreddit={this.props.fetchSubreddit} />
-                    <Posts subreddit={this.props.selectedSubreddit} />
-                </div>
-                <div className={styles.subreddits}>
-                    <ConfigLoader fetchConfig={this.props.fetchConfig} />
-                    <MonacoEditor
-                        height="500"
-                        language="json"
-                        value={this.props.code}
-                        options={options}
-                    />
+            <div className={styles.subreddits}>
+                <ConfigLoader fetchConfig={this.props.fetchConfig} />
+                <CodeEditor code={this.props.code}/>
 
-                </div>
-            </BodyWrapper>
+            </div>
         </div>);
     }
 }
