@@ -1,3 +1,4 @@
+// TODO: download from live-site
 export const schema = `{
   "type": "object",
   "title": "Analysis Config",
