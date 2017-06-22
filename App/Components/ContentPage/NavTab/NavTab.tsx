@@ -26,9 +26,9 @@ export default class NavTab extends BaseComponent<INavTabProps, {}> {
                 <Grid.Column width={4}>
                     <Menu fluid vertical tabular>
                         <Menu.Item name="AnalysisConfig" active={activeItem === "AnalysisConfig"} onClick={loadTab} />
-                        <Menu.Item name="pics" active={activeItem === "pics"} onClick={loadTab} />
-                        <Menu.Item name="companies" active={activeItem === "companies"} onClick={loadTab} />
-                        <Menu.Item name="links" active={activeItem === "links"} onClick={loadTab} />
+                        <Menu.Item name="AnalysisTemplates" active={activeItem === "AnalysisTemplates"} onClick={loadTab} />
+                        <Menu.Item name="ExperimentManagementGroup" active={activeItem === "ExperimentManagementGroup"} onClick={loadTab} />
+                        <Menu.Item name="Schemas" active={activeItem === "Schemas"} onClick={loadTab} />
                     </Menu>
                 </Grid.Column>
 
