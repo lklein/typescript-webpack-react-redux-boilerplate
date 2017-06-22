@@ -25,7 +25,8 @@
     "redux-logger": "3.0.6",
     "redux-thunk": "2.2.0",
     "monaco-editor": "~0.8.x",
-    "react-monaco-editor": "0.8.1"
+    "react-monaco-editor": "0.8.1",
+    "semantic-ui-react":"~0.68.5"
   },
   "devDependencies": {
     "awesome-typescript-loader": "3.1.3",

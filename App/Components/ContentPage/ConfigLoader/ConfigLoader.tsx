@@ -6,14 +6,14 @@ import Button from "./../../Common/Button/Button";
 const styles: any = require("./ConfigLoader.module.less");
 
 interface IConfigLoaderProps {
-    fetchConfig: () => void;
+    fetchConfig: (section: string) => void;
 };
 
 export default class ConfigLoader extends BaseComponent<IConfigLoaderProps, {}> {
     doRender(): React.ReactElement<{}> {
         return (<div className={styles.container}>
                     <div className={styles.subredditButtons}>
-                        <Button onClick={() => this.props.fetchConfig()}>Load Config</Button>
+                        <Button onClick={() => this.props.fetchConfig("AnalysisConfig")}>Load Config</Button>
                     </div>
                 </div>);
     }

@@ -14,7 +14,7 @@ import BodyWrapper from "./BodyWrapper/BodyWrapper";
 import SubredditChooser from "./SubredditChooser/SubredditChooser";
 import ConfigLoader from "./ConfigLoader/ConfigLoader";
 import Posts from "./Posts/Posts";
-import CodeEditor from "./CodeEditor/CodeEditor";
+import NavTab from "./Navtab/NavTab";
 
 // tslint:disable-next-line:no-any
 const styles: any = require("./ContentPage.module.less");
@@ -28,7 +28,7 @@ interface IContentPageProps {
 
     sayHello?: () => void;
     fetchSubreddit?: (subreddit: string) => void;
-    fetchConfig?: () => void;
+    fetchConfig?: (name) => void;
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -36,9 +36,8 @@ class ContentPage extends BaseComponent<IContentPageProps, {}> {
     doRender(): React.ReactElement<{}> {
         return (<div className={styles.container}>
             <div className={styles.subreddits}>
-                <ConfigLoader fetchConfig={this.props.fetchConfig} />
-                <CodeEditor code={this.props.code}/>
-
+                {/*<ConfigLoader fetchConfig={this.props.fetchConfig} />*/}
+                <NavTab code={this.props.code} fetchConfig={this.props.fetchConfig}/>
             </div>
         </div>);
     }
@@ -58,7 +57,7 @@ function mapDispatchToProps(dispatch: Dispatch<{}>): IContentPageProps {
     return {
         sayHello: () => dispatch(sayHello()),
         fetchSubreddit: (subreddit: string) => dispatch(fetchPosts(subreddit)),
-        fetchConfig: () => dispatch(fetchConfig()),
+        fetchConfig: (section: string) => dispatch(fetchConfig(section)),
     };
 }
 
