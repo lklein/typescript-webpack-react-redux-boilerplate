@@ -1,0 +1,29 @@
+{
+    "AnalysisConfig": {
+        "AnalysisRules": [],
+        "ForayAppTemplates": {},
+        "RegularTemplates": {},
+        "AllowedAssginmentUnits": [
+            "muid",
+            "detection.muidquery",
+            "User",
+            "Device",
+            "Request",
+            "detection.documentownerid"
+        ],
+        "DefaultTemplateNames": []
+    },
+    "AnalysisTemplates": {
+        "IsEnabled": "false"
+    },
+    "ExperimentManagementGroup": {
+        "Logo": null,
+        "Name": "Root",
+        "Description": "Root management group.",
+        "PreferredTimeZone": "Pacific Standard Time",
+        "FlightConstraints": []
+    },
+    "Schemas": {
+
+    }
+}
