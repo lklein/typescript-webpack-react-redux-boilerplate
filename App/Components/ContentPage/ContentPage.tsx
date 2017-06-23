@@ -22,11 +22,10 @@ const styles: any = require("./ContentPage.module.less");
 interface IContentPageProps {
     bodyTitle?: string;
     bodySummary?: string;
-    sayHelloCount?: number;
     selectedSubreddit?: Subreddit;
     code?: string;
+    activeTabItem?: string;
 
-    sayHello?: () => void;
     fetchSubreddit?: (subreddit: string) => void;
     fetchConfig?: (name) => void;
 }
@@ -36,8 +35,7 @@ class ContentPage extends BaseComponent<IContentPageProps, {}> {
     doRender(): React.ReactElement<{}> {
         return (<div className={styles.container}>
             <div className={styles.subreddits}>
-                {/*<ConfigLoader fetchConfig={this.props.fetchConfig} />*/}
-                <NavTab code={this.props.code} fetchConfig={this.props.fetchConfig}/>
+                <NavTab code={this.props.code} fetchConfig={this.props.fetchConfig} activeItem={this.props.activeTabItem}/>
             </div>
         </div>);
     }
@@ -47,15 +45,14 @@ function mapStateToProps(state: StoreState): IContentPageProps {
     return {
         bodyTitle: state.content.title,
         bodySummary: state.content.summary,
-        sayHelloCount: state.helloCount.count,
         selectedSubreddit: state.subreddits.items[state.subreddits.selectedSubreddit],
         code: state.editor.code,
+        activeTabItem: state.tab.activeItem,
     };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<{}>): IContentPageProps {
     return {
-        sayHello: () => dispatch(sayHello()),
         fetchSubreddit: (subreddit: string) => dispatch(fetchPosts(subreddit)),
         fetchConfig: (section: string) => dispatch(fetchConfig(section)),
     };

@@ -17,6 +17,9 @@ export default class NavTab extends BaseComponent<INavTabProps, {}> {
     doRender(): React.ReactElement<{}> {
         const activeItem = this.props.activeItem;
 
+        // tslint:disable-next-line:no-console
+        console.log("active item is: ", activeItem);
+
         const loadTab: (event, {name}) => void = (event, {name}) => {
             this.props.fetchConfig(name);
         };
